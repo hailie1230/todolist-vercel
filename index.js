@@ -1,13 +1,13 @@
 import express from "express";
 
 // const path = require("path");
-const express = require("express");
+// const express = require("express");
 const app = express();
-const cors = require("cors");
+// const cors = require("cors");
 
 // app.use(express.static(path.join(__dirname, "build")));
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
