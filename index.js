@@ -1,17 +1,34 @@
-const express = require("express");
-const todoRouter = require("./routes/todo");
+import express from "express";
 
 const app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.use("/todo", todoRouter);
+let id = 2;
+const todoList = [
+  {
+    id: 1,
+    text: "할일 1",
+    done: false,
+  },
+];
 
-app.listen(80, () => {
-  console.log("server start! 80");
+app.get("/", (req, res) => {
+  res.json(todoList);
 });
 
-// app.listen(4000, () => {
-//   console.log("server start! 4000");
-// });
+app.post("/", (req, res) => {
+  const { text, done } = req.body;
+  console.log("req.body : ", req.body);
+  todoList.push({
+    id: id++,
+    text,
+    done,
+  });
+  return res.send("success");
+});
+
+app.listen(4000, () => {
+  console.log("server start! 4000");
+});
