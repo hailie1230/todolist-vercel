@@ -8,6 +8,10 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.use("/todo", todoRouter);
 
-app.listen(4000, () => {
-  console.log("server start! 4000");
+app.listen(80, () => {
+  console.log("server start! 80");
 });
+
+// app.listen(4000, () => {
+//   console.log("server start! 4000");
+// });
