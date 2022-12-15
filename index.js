@@ -29,7 +29,7 @@ app.post("/", (req, res) => {
   return res.send("success");
 });
 
-app.delete("/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   const deleteId = todoList.find((c) => c.id === parseInt(req.params.id));
   if (!deleteId)
     return res.status(404).send("The course with the given ID was not found");
