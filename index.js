@@ -14,11 +14,11 @@ const todoList = [
   },
 ];
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json(todoList);
 });
 
-app.post("/", (req, res) => {
+app.post("/api", (req, res) => {
   const { text, done } = req.body;
   console.log("req.body : ", req.body);
   todoList.push({
@@ -29,6 +29,20 @@ app.post("/", (req, res) => {
   return res.send("success");
 });
 
+
+app.delete("/api/:id", (req, res) => {
+  const deleteId = todoList.find((c) => c.id === parseInt(req.params.id));
+  if (!deleteId)
+    return res.status(404).send("The course with the given ID was not found");
+
+  const index = todoList.indexOf(deleteId);
+  todoList.splice(index, 1);
+
+  res.send(deleteId);
+});
+
 app.listen(4000, () => {
   console.log("server start! 4000");
 });
+
+
